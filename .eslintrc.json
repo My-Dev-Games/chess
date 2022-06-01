@@ -23,6 +23,9 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "jsx-a11y/click-events-have-key-events": "off",
+    "react/jsx-no-bind": "off",
+    "import/no-cycle": "off",
     "max-len": [
       "error",
       80,
