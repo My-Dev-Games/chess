@@ -41,4 +41,21 @@ export default class Board {
       });
     });
   }
+
+  public highlightCells(selectedCell: Cell | null) {
+    for (let i = 0; i < this.cells.length; i += 1) {
+      const row = this.cells[i];
+      for (let j = 0; j < row.length; j += 1) {
+        const target = row[j];
+        target.available = !!selectedCell?.figure
+          ?.canMove(target, selectedCell);
+      }
+    }
+  }
+
+  public getCopyBoard() {
+    const newBoard = new Board();
+    newBoard.cells = this.cells;
+    return newBoard;
+  }
 }

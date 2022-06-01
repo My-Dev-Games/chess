@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Board from '../models/Board';
 import CellComponent from './CellComponent';
@@ -23,7 +24,22 @@ function BoardComponent({ board, setBoard }: BoardProps): JSX.Element {
     } else {
       setSelectedCell(cell);
     }
+
+    if (
+      selectedCell
+      && selectedCell !== cell
+      // && selectedCell.figure?.canMove(cell)
+    ) {
+      selectedCell.moveFigure(cell);
+      setSelectedCell(null);
+    }
   }
+
+  useEffect(() => {
+    board.highlightCells(selectedCell);
+    const newBoard = board.getCopyBoard();
+    setBoard(newBoard);
+  }, [selectedCell]);
 
   return (
     <div className="board">

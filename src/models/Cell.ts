@@ -33,6 +33,34 @@ class Cell {
     this.available = false;
     this.id = uuidv4();
   }
+
+  public moveFigure(target: Cell) {
+    if (this.figure?.canMove(target, this)) {
+      // this.figure?.moveFigure(target);
+      target.figure = this.figure;
+      this.figure = null;
+    }
+  }
+
+  public isEmpty() {
+    return this.figure === null;
+  }
+
+  public isEmptyVertical(target: Cell): boolean {
+    if (this.x !== target.x) {
+      return false;
+    }
+
+    const min = Math.min(this.y, target.y);
+    const max = Math.max(this.y, target.y);
+
+    for (let y = min + 1; y < max; y += 1) {
+      if (!this.board.getCell(this.x, y).isEmpty()) {
+        return false;
+      }
+    }
+    return true;
+  }
 }
 
 export default Cell;

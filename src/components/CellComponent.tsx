@@ -15,6 +15,7 @@ function CellComponent({ cell, selected, click }: CellProps) {
       role="button"
       onClick={() => click(cell)}
       className={cn('cell', cell.color, selected && 'selected')}
+      style={{ background: cell.available && cell.figure ? 'green' : '' }}
     >
       {cell.available && !cell.figure && <div className="available" />}
       {
