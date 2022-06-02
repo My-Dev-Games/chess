@@ -11,18 +11,14 @@ class Queen extends Figure {
     this.name = FigureNames.QUEEN;
   }
 
-  canMove(target: Cell, self?: Cell): boolean {
+  canMove(target: Cell, self: Cell): boolean {
     if (!super.canMove(target)) {
       return false;
     }
 
-    if (self?.figure?.id === this.id) {
-      return self.isEmptyVertical(target)
-        || self.isEmptyHorizontal(target)
-        || self.isEmptyDiagonal(target);
-    }
-
-    return false;
+    return self.isEmptyVertical(target)
+      || self?.isEmptyHorizontal(target)
+      || self?.isEmptyDiagonal(target);
   }
 }
 

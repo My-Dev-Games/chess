@@ -15,13 +15,8 @@ class Rook extends Figure {
     if (!super.canMove(target)) {
       return false;
     }
-
-    if (self?.figure?.id === this.id) {
-      return self.isEmptyVertical(target)
-        || self.isEmptyHorizontal(target);
-    }
-
-    return false;
+    return self.isEmptyVertical(target)
+      || self.isEmptyHorizontal(target);
   }
 }
 

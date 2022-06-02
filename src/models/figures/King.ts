@@ -11,12 +11,16 @@ class King extends Figure {
     this.name = FigureNames.KING;
   }
 
-  canMove(target: Cell): boolean {
+  canMove(target: Cell, self: Cell): boolean {
     if (!super.canMove(target)) {
       return false;
     }
 
-    return true;
+    const absX = Math.abs(target.x - self.x);
+    const absY = Math.abs(target.y - self.y);
+    return (absX === 1 && absY === 1)
+      || (absX === 1 && absY === 0)
+      || (absX === 0 && absY === 1);
   }
 }
 

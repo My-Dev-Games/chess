@@ -16,11 +16,7 @@ class Bishop extends Figure {
       return false;
     }
 
-    if (self?.figure?.id === this.id) {
-      return self.isEmptyDiagonal(target);
-    }
-
-    return true;
+    return self.isEmptyDiagonal(target);
   }
 }
 
