@@ -17,10 +17,12 @@ class Queen extends Figure {
     }
 
     if (self?.figure?.id === this.id) {
-      return self.isEmptyVertical(target);
+      return self.isEmptyVertical(target)
+        || self.isEmptyHorizontal(target)
+        || self.isEmptyDiagonal(target);
     }
 
-    return true;
+    return false;
   }
 }
 

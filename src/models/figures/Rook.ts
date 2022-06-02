@@ -11,12 +11,17 @@ class Rook extends Figure {
     this.name = FigureNames.ROOK;
   }
 
-  canMove(target: Cell): boolean {
+  canMove(target: Cell, self: Cell): boolean {
     if (!super.canMove(target)) {
       return false;
     }
 
-    return true;
+    if (self?.figure?.id === this.id) {
+      return self.isEmptyVertical(target)
+        || self.isEmptyHorizontal(target);
+    }
+
+    return false;
   }
 }
 

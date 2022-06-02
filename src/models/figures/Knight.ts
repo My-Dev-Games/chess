@@ -11,12 +11,17 @@ class Knight extends Figure {
     this.name = FigureNames.KNIGHT;
   }
 
-  canMove(target: Cell): boolean {
+  canMove(target: Cell, self: Cell): boolean {
     if (!super.canMove(target)) {
       return false;
     }
 
-    return true;
+    if (self?.figure?.id === this.id) {
+      const absX = Math.abs(self.x - target.x);
+      const absY = Math.abs(self.y - target.y);
+      return (absX === 2 && absY === 1) || (absX === 1 && absY === 2);
+    }
+    return false;
   }
 }
 

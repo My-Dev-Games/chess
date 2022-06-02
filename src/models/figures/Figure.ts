@@ -39,9 +39,9 @@ class Figure {
     return true;
   }
 
-  // moveFigure(target: Cell) {
-  //
-  // }
+  moveFigure(target: Cell) {
+
+  }
 }
 
 export default Figure;

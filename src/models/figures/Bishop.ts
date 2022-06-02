@@ -11,9 +11,13 @@ class Bishop extends Figure {
     this.name = FigureNames.BISHOP;
   }
 
-  canMove(target: Cell): boolean {
+  canMove(target: Cell, self: Cell): boolean {
     if (!super.canMove(target)) {
       return false;
+    }
+
+    if (self?.figure?.id === this.id) {
+      return self.isEmptyDiagonal(target);
     }
 
     return true;

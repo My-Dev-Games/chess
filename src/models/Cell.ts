@@ -36,7 +36,7 @@ class Cell {
 
   public moveFigure(target: Cell) {
     if (this.figure?.canMove(target, this)) {
-      // this.figure?.moveFigure(target);
+      this.figure?.moveFigure(target);
       target.figure = this.figure;
       this.figure = null;
     }
@@ -59,6 +59,42 @@ class Cell {
         return false;
       }
     }
+    return true;
+  }
+
+  public isEmptyHorizontal(target: Cell): boolean {
+    if (this.y !== target.y) {
+      return false;
+    }
+
+    const min = Math.min(this.x, target.x);
+    const max = Math.max(this.x, target.x);
+
+    for (let x = min + 1; x < max; x += 1) {
+      if (!this.board.getCell(x, this.y).isEmpty()) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public isEmptyDiagonal(target: Cell): boolean {
+    const absX = Math.abs(target.x - this.x);
+    const absY = Math.abs(target.y - this.y);
+
+    if (absX !== absY) {
+      return false;
+    }
+
+    const dx = this.x < target.x ? 1 : -1;
+    const dy = this.y < target.y ? 1 : -1;
+
+    for (let i = 1; i < absY; i += 1) {
+      if (!this.board.getCell(this.x + dx * i, this.y + dy * i)?.isEmpty()) {
+        return false;
+      }
+    }
+
     return true;
   }
 }
