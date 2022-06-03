@@ -1,7 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 import Board from './Board';
-import Figure from './figures/Figure';
+import Figure, { FigureNames } from './figures/Figure';
 import Colors from './Colors';
+import Queen from './figures/Queen';
 
 class Cell {
   readonly x: number;
@@ -36,14 +37,36 @@ class Cell {
 
   public moveFigure(target: Cell) {
     if (this.figure?.canMove(target, this)) {
-      this.figure?.moveFigure(target);
-      target.figure = this.figure;
+      this.figure?.moveFigure(target, this);
+
+      if (target.figure) {
+        this.board.addLostFigure(target.figure);
+      }
+
+      if (
+        this.figure?.name === FigureNames.PAWN
+          && ((this.figure.color === Colors.WHITE && target.y === 0)
+          || (this.figure.color === Colors.BLACK && target.y === 7))
+      ) {
+        const selfFigure = this.figure;
+        target.figure = new Queen(selfFigure.color);
+      } else {
+        target.figure = this.figure;
+      }
+
       this.figure = null;
     }
   }
 
-  public isEmpty() {
+  public isEmpty(): boolean {
     return this.figure === null;
+  }
+
+  public isEnemy(target: Cell): boolean {
+    if (target.figure) {
+      return target.figure?.color !== this.figure?.color;
+    }
+    return false;
   }
 
   public isEmptyVertical(target: Cell): boolean {
