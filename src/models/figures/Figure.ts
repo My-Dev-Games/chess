@@ -29,6 +29,7 @@ class Figure {
     this.name = FigureNames.FIGURE;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   canMove(target: Cell, self?: Cell): boolean {
     if (target.figure?.color === this.color) {
       return false;
@@ -39,9 +40,9 @@ class Figure {
     return true;
   }
 
-  moveFigure(target: Cell) {
-
-  }
+  // eslint-disable-next-line max-len
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, class-methods-use-this
+  moveFigure(target: Cell, self?: Cell) {}
 }
 
 export default Figure;
