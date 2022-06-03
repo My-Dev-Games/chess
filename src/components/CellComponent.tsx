@@ -8,7 +8,7 @@ interface CellProps {
   click: (cell: Cell) => void
 }
 
-function CellComponent({ cell, selected, click }: CellProps) {
+function CellComponent({ cell, selected, click }: CellProps): JSX.Element {
   return (
     <div
       tabIndex={0}

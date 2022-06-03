@@ -6,6 +6,10 @@ import figureConfig, { IConfig } from '../config/FigureConfig';
 export default class Board {
   cells: Cell[][] = [];
 
+  lostWhiteFigures: Figure[] = [];
+
+  lostBlackFigures: Figure[] = [];
+
   public initCells() {
     for (let i: number = 0; i < 8; i += 1) {
       const row: Cell[] = [];
@@ -56,6 +60,16 @@ export default class Board {
   public getCopyBoard() {
     const newBoard = new Board();
     newBoard.cells = this.cells;
+    newBoard.lostBlackFigures = this.lostBlackFigures;
+    newBoard.lostWhiteFigures = this.lostWhiteFigures;
     return newBoard;
+  }
+
+  public addLostFigure(figure: Figure) {
+    if (figure.color === Colors.BLACK) {
+      this.lostBlackFigures.push(figure);
+    } else {
+      this.lostWhiteFigures.push(figure);
+    }
   }
 }
