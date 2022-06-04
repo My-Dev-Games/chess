@@ -9,10 +9,9 @@ interface LostFiguresProps {
 function LostFigures({ title, figures }: LostFiguresProps): JSX.Element {
   return (
     <div className="lost">
-      {title}
+      <h3>{title}</h3>
       {figures.map((figure) => (
-        <div key={figure.id}>
-          {figure.name}
+        <div key={figure.id} className="last_figure">
           {
             figure.logo
             && (
@@ -24,10 +23,13 @@ function LostFigures({ title, figures }: LostFiguresProps): JSX.Element {
               />
             )
           }
+          {' '}
+          {figure.name}
         </div>
       ))}
     </div>
   );
 }
 
-export default React.memo(LostFigures);
+// export default React.memo(LostFigures);
+export default LostFigures;

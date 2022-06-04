@@ -27,3 +27,4 @@ function CellComponent({ cell, selected, click }: CellProps): JSX.Element {
 }
 
 export default React.memo(CellComponent);
+// export default CellComponent;

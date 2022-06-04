@@ -20,7 +20,6 @@ function BoardComponent({
   swapPlayer,
 }: BoardProps): JSX.Element {
   const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
-  setBoard(board);
 
   function click(cell: Cell) {
     if (cell.figure && cell.figure?.color === currentPlayer?.color) {
@@ -30,8 +29,8 @@ function BoardComponent({
       && selectedCell.figure?.canMove(cell, selectedCell)
     ) {
       selectedCell.moveFigure(cell);
-      setSelectedCell(null);
       swapPlayer();
+      setSelectedCell(null);
     }
 
     if (cell.x === selectedCell?.x && cell.y === selectedCell?.y) {
@@ -74,3 +73,4 @@ function BoardComponent({
 }
 
 export default React.memo(BoardComponent);
+// export default BoardComponent;
